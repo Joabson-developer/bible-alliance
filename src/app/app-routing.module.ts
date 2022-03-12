@@ -8,6 +8,10 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
   },
+  {
+    path: ':version/:abbrev/:chapter',
+    component: HomeComponent,
+  },
 ];
 
 @NgModule({
