@@ -9,6 +9,7 @@ import { BottomSheetComponent } from './shared/bottom-sheet/bottom-sheet.compone
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { ChapterComponent } from './shared/chapter/chapter.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,13 +19,10 @@ import { FooterComponent } from './shared/footer/footer.component';
     BottomSheetComponent,
     SidebarComponent,
     ChapterComponent,
-    FooterComponent
+    FooterComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,3 +1,4 @@
+import { BibleService } from './../services/bible.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -8,7 +9,11 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private bibleService: BibleService
+  ) {}
 
   public inscription!: Subscription;
   public version: string = 'acf';
@@ -16,6 +21,22 @@ export class HomeComponent implements OnInit, OnDestroy {
   public chapter: string = '1';
 
   ngOnInit(): void {
+    this.bibleService.getVersions().subscribe(
+      (data) => {
+        console.log(data);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+    this.fullBible();
+  }
+
+  ngOnDestroy() {
+    this.inscription.unsubscribe();
+  }
+
+  private fullBible() {
     this.inscription = this.route.params.subscribe((params: any) => {
       if (Object.entries(params).length === 0) {
         this.router.navigate([
@@ -27,9 +48,5 @@ export class HomeComponent implements OnInit, OnDestroy {
 
       console.log(params);
     });
-  }
-
-  ngOnDestroy() {
-    this.inscription.unsubscribe();
   }
 }
