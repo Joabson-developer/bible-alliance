@@ -3,9 +3,23 @@
     color: #212529;
   }
 
-  &.active .page-link {
-    background-color: #212529;
-    border-color: #212529;
-    color: #ffffff;
+  &.active {
+    .page-link {
+      background-color: #212529;
+      border-color: #212529;
+      color: #ffffff;
+    }
+  }
+
+  &.disabled {
+    .page-link {
+      color: #6c757d;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .w-md-80 {
+    max-width: 80%;
   }
 }

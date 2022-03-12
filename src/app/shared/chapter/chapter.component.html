@@ -1,12 +1,12 @@
 <main *ngIf="chapter" class="container mt-4 flex-grow-1 mb-5">
-  <h1>{{ chapter.name }} {{ chapter.chapters[0].number }}</h1>
+  <h1>{{ bookName }} {{ chapter.number }}</h1>
 
   <section>
     <!-- {{ chapter.chapters[0].verses | json }} -->
-    <p *ngFor="let verse of chapter.chapters[0].verses; let i = index">
+    <p *ngFor="let verse of chapter.verses; let i = index">
       <span class="fw-bold me-2">{{ verse.number }}</span> {{ verse.text }}
     </p>
   </section>
 
-  <app-pagination></app-pagination>
+  <app-pagination [bookLength]="chapter"></app-pagination>
 </main>

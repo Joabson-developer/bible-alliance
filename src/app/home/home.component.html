@@ -1,5 +1,10 @@
 <app-header></app-header>
 <app-sidebar></app-sidebar>
-<app-chapter [chapter]="dataChapter"></app-chapter>
+<app-chapter
+  *ngIf="dataChapter"
+  [chapter]="dataChapter.chapter"
+  [bookName]="dataChapter.name"
+  [chapters]="dataChapter.chapters"
+></app-chapter>
 <app-footer></app-footer>
 <app-bottom-sheet></app-bottom-sheet>
