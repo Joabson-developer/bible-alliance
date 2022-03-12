@@ -12,4 +12,12 @@ export class BibleService {
   public getVersions() {
     return this.http.get(`${this.URL}/versions`);
   }
+
+  public getBooks(abbrev?: string) {
+    return this.http.get(`${this.URL}/books/${abbrev}`);
+  }
+
+  public getChapter(version: string, abbrev: string, chapter: string) {
+    return this.http.get(`${this.URL}/${version}/${abbrev}/${chapter}`);
+  }
 }

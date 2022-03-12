@@ -21,22 +21,33 @@ export class HomeComponent implements OnInit, OnDestroy {
   public chapter: string = '1';
 
   ngOnInit(): void {
-    this.bibleService.getVersions().subscribe(
-      (data) => {
-        console.log(data);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-    this.fullBible();
+    this.getVersions();
+    this.getBooks();
+    this.getBooks(this.abbrev);
+    this.getChapter();
   }
 
   ngOnDestroy() {
     this.inscription.unsubscribe();
   }
 
-  private fullBible() {
+  private response(response: any) {
+    console.log(response);
+  }
+
+  private error(error: any) {
+    console.log(error);
+  }
+
+  private getBooks(abbrev: string = '') {
+    this.bibleService.getBooks(abbrev).subscribe(this.response, this.error);
+  }
+
+  private getVersions() {
+    this.bibleService.getVersions().subscribe(this.response, this.error);
+  }
+
+  private getChapter() {
     this.inscription = this.route.params.subscribe((params: any) => {
       if (Object.entries(params).length === 0) {
         this.router.navigate([
@@ -46,7 +57,9 @@ export class HomeComponent implements OnInit, OnDestroy {
         return;
       }
 
-      console.log(params);
+      this.bibleService
+        .getChapter(params.version, params.abbrev, params.chapter)
+        .subscribe(this.response, this.error);
     });
   }
 }
