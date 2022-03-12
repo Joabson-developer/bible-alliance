@@ -15,10 +15,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     private bibleService: BibleService
   ) {}
 
-  public inscription!: Subscription;
-  public version: string = 'acf';
-  public abbrev: string = 'gn';
-  public chapter: string = '1';
+  private inscription!: Subscription;
+  private version: string = 'acf';
+  private abbrev: string = 'gn';
+  private chapter: string = '1';
+
+  public dataChapter: any;
 
   ngOnInit(): void {
     this.getVersions();
@@ -59,7 +61,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
       this.bibleService
         .getChapter(params.version, params.abbrev, params.chapter)
-        .subscribe(this.response, this.error);
+        .subscribe((response) => {
+          this.dataChapter = response;
+        }, this.error);
     });
   }
 }

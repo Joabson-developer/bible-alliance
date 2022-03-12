@@ -1,36 +1,12 @@
-<main class="container mt-4 flex-grow-1 mb-5">
-  <h1>Gênesis 1</h1>
+<main *ngIf="chapter" class="container mt-4 flex-grow-1 mb-5">
+  <h1>{{ chapter.name }} {{ chapter.chapters[0].number }}</h1>
 
   <section>
-    <p>
-      <span class="fw-bold me-2">1</span> Lorem ipsum dolor, sit amet
-      consectetur adipisicing elit. Doloribus, sint! Inventore asperiores est
-      quam corporis explicabo, facilis voluptates harum distinctio corrupti
-      reprehenderit similique modi, earum laudantium vel nihil veniam suscipit!
-    </p>
-    <p>
-      <span class="fw-bold me-2">2</span> Lorem ipsum dolor, sit amet
-      consectetur adipisicing elit. Doloribus, sint! Inventore asperiores est
-      quam corporis explicabo, facilis voluptates harum distinctio corrupti
-      reprehenderit similique modi, earum laudantium vel nihil veniam suscipit!
-    </p>
-    <p>
-      <span class="fw-bold me-2">3</span> Lorem ipsum dolor, sit amet
-      consectetur adipisicing elit. Doloribus, sint! Inventore asperiores est
-      quam corporis explicabo, facilis voluptates harum distinctio corrupti
-      reprehenderit similique modi, earum laudantium vel nihil veniam suscipit!
-    </p>
-    <p>
-      <span class="fw-bold me-2">4</span> Lorem ipsum dolor, sit amet
-      consectetur adipisicing elit. Doloribus, sint! Inventore asperiores est
-      quam corporis explicabo, facilis voluptates harum distinctio corrupti
-      reprehenderit similique modi, earum laudantium vel nihil veniam suscipit!
-    </p>
-    <p>
-      <span class="fw-bold me-2">5</span> Lorem ipsum dolor, sit amet
-      consectetur adipisicing elit. Doloribus, sint! Inventore asperiores est
-      quam corporis explicabo, facilis voluptates harum distinctio corrupti
-      reprehenderit similique modi, earum laudantium vel nihil veniam suscipit!
+    <!-- {{ chapter.chapters[0].verses | json }} -->
+    <p *ngFor="let verse of chapter.chapters[0].verses; let i = index">
+      <span class="fw-bold me-2">{{ verse.number }}</span> {{ verse.text }}
     </p>
   </section>
+
+  <app-pagination></app-pagination>
 </main>
